@@ -1,7 +1,9 @@
 // #include <stdio.h> 
 #include <stdlib.h> //exit()
 #include "Steganography.c"
-#include "copyBMP.c"
+// #include "copyBMP.c"
+
+#define MAX_LENGTH 65940
 
 
 int main(int argc, char *argv[]){
@@ -14,7 +16,7 @@ int main(int argc, char *argv[]){
     //ASSIGN 2nd ARUGMENT TO MODE
   char *mode = argv[1];
     //CHECK IF ARGUMENT's(MODE) LENGTH IS NOT 1 CHARACTER
-  if(sizeOfInput(mode) != 1){
+  if(sizeOfInputMode(mode) != 1){
       printf("Argument is too long!\nRun again with './mystego.exe e' or './mystego.exe d'");
       exit(1);
   }
@@ -26,32 +28,28 @@ int main(int argc, char *argv[]){
                     to stego file. Then pass stego file to encrypt.
         */
         printf("Encryption Mode ON\n");
-        char* content = "HELLO WORLD";
-        FILE *original, *stego; 
-    
-        if((original = fopen("./origin.bmp", "rb")) == NULL){
-            printf("Error opening \"origin.bmp\".\n");
+        //GET INPUT TO ENCRYPT
+        char content[MAX_LENGTH];
+        if(fgets(content, MAX_LENGTH, stdin) == 0){
+            printf("sth wrong\n");
             exit(1);
         }
 
+        FILE *original;
         Encrypt(original, content);
-
-        fclose(original);
     }
 
     // DECRYPTION
     if((*mode) == 'd'){
         printf("Decryption Mode ON\n");
-        FILE *bmp;
-        if((bmp = fopen("./stego.bmp", "rb")) == NULL){
-            printf("Error opening \"stego.bmp\". MAKE SURE THE FILE EXIST!\n");
-            exit(1);
-        }
+        FILE *stego;
 
+        Decrypt(stego);
     }
 
     return 0;
 }
 
-
-
+/*
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularized in the 1960s with the release of Letrasetsheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+*/

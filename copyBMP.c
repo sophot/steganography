@@ -26,6 +26,7 @@ typedef struct
     DWORD h14;
     DWORD h15;
 }BITMAPHEADER;
+
 typedef struct
 {
     BYTE red;
@@ -49,12 +50,16 @@ void copyBMP(FILE* original, FILE* stego){
     while(1){
         //COPYING ORGINAL CONTENTS TO STEGO --RESULT IS CLOSE
         if ( fread(&pixel, sizeof(PIXEL), 1, original) < 1 )
-        {
             break;
-        }
+
         fwrite(&pixel, sizeof(PIXEL), 1, stego);
     }
-    
-    // fclose(original);
+
     // fclose(stego);
+
+    /*TO COMPENSATE THE LAST BYTE*/
+    char nul = 0x00;
+    // stego = fopen("./stego.bmp", "r+b");
+    fseek(stego, 0x00, SEEK_END);
+    fwrite(&nul, 1, 1, stego);
 }
