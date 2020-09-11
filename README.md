@@ -1,15 +1,15 @@
 # STEGANOGRAPHY - Hiding Texts Inside an Image
 
-######Steganography is the practice of concealing a file, message, image, or video within another file, message, image, or video. ​Generally, the hidden messages appear to be part of something else.
+###### Steganography is the practice of concealing a file, message, image, or video within another file, message, image, or video. ​Generally, the hidden messages appear to be part of something else.
 
 <p align="center">
   <img src="https://blog.eccouncil.org/wp-content/uploads/2020/05/Steganography.jpg">
 </p>
 
-###_It is important that you read the report!_
+### _It is important that you read the report!_
 
 
-#####Getting Started
+##### Getting Started
 *Cloning repository*
 ```sh
 $ git clone https://github.com/sophot/steganography.git
@@ -25,7 +25,7 @@ $ ./stego.out e (for mac)
 $./stego.exe d
 ```
 
-#####Demo
+##### Demo
 <p align="center">
   <img src="https://scontent-ssn1-1.xx.fbcdn.net/v/t1.0-9/118990182_2663615970554213_3839425646519233362_n.jpg?_nc_cat=108&_nc_sid=730e14&_nc_ohc=2RvERVvhxBoAX_QPE32&_nc_ht=scontent-ssn1-1.xx&oh=71953118be9bbb6cbad42665e4fd4241&oe=5F827084">
 </p>
