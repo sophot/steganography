@@ -27,8 +27,8 @@ $./stego.exe d
 
 #####Demo
 <p align="center">
-  <img src="https://raw.githubusercontent.com/sophot/steganography/master/img/sample.png?token=AJASSSVTUBWPN52EEE2ONY27LOF6I">
+  <img src="https://scontent-ssn1-1.xx.fbcdn.net/v/t1.0-9/118990182_2663615970554213_3839425646519233362_n.jpg?_nc_cat=108&_nc_sid=730e14&_nc_ohc=2RvERVvhxBoAX_QPE32&_nc_ht=scontent-ssn1-1.xx&oh=71953118be9bbb6cbad42665e4fd4241&oe=5F827084">
 </p>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/sophot/steganography/master/img/sample2.png?token=AJASSSQ2NICH6X2W7KAIY627LOGCQ">
+  <img src="https://scontent-ssn1-1.xx.fbcdn.net/v/t1.0-9/119104542_2663615983887545_5252859306571108536_o.jpg?_nc_cat=105&_nc_sid=730e14&_nc_ohc=fBUdNWLBJ1AAX8wWWjn&_nc_ht=scontent-ssn1-1.xx&oh=6b1a58f00e4789ed02b3b304a139a1a7&oe=5F80A116">
 </p>
