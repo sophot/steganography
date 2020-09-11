@@ -2,8 +2,9 @@
 
 ######Steganography is the practice of concealing a file, message, image, or video within another file, message, image, or video. ​Generally, the hidden messages appear to be part of something else.
 
-
-![stego](https://blog.eccouncil.org/wp-content/uploads/2020/05/Steganography.jpg)
+<p align="center">
+  <img src="https://blog.eccouncil.org/wp-content/uploads/2020/05/Steganography.jpg">
+</p>
 
 ###_It is important that you read the report!_
 
@@ -24,5 +25,10 @@ $ ./stego.out e (for mac)
 $./stego.exe d
 ```
 
-![](https://github.com/sophot/steganography/tree/master/img/sample.png)
-![](https://github.com/sophot/steganography/tree/master/img/sample2.png)
+#####Demo
+<p align="center">
+  <img src="https://raw.githubusercontent.com/sophot/steganography/master/img/sample.png?token=AJASSSVTUBWPN52EEE2ONY27LOF6I">
+</p>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/sophot/steganography/master/img/sample2.png?token=AJASSSQ2NICH6X2W7KAIY627LOGCQ">
+</p>
