@@ -1,14 +1,12 @@
-// #include <stdio.h>
 #include "copyBMP.c"
 
-
+//HELPER FUNCTIONS
 int getStrLength(char *str){
     //RETURN LENGTH OF A STRING
     int i  = 0;
     for(i = 0; str[i] != '\n'; i++);
     return i;
 }
-
 int sizeOfInputMode(char* arg){
     //COUNT Size of INPUT MODE
     int ans = 0;
@@ -17,7 +15,6 @@ int sizeOfInputMode(char* arg){
     }
     return ans;
 }
-
 int getBMPFileSize(FILE* file){
     unsigned int size;
     fseek(file, 0x2, SEEK_SET);
@@ -25,8 +22,18 @@ int getBMPFileSize(FILE* file){
 
     return size;
 }
+//END HELPER FUNCTIONS
 
-void encrypt(FILE *stego, char* content){
+
+int Encode(FILE* original, char* content){
+    if((original = fopen("./origin.bmp", "rb")) == NULL){
+        printf("Error opening \"origin.bmp\".\n");
+        return -1;
+    }
+    //IF FILE NOT EXIST, CREATE NEW FILE
+    FILE* stego = fopen("./stego.bmp", "wb");
+    copyBMP(original, stego);
+    fclose(stego);
 
     stego = fopen("./stego.bmp", "r+b");
 
@@ -38,13 +45,11 @@ void encrypt(FILE *stego, char* content){
     int idx = 0;
     for(int i = 0; i < getStrLength(content)*2; i+=2){ //loop through encrypting content
         char cont = content[idx++]; char origH, origL, low, high; 
-        // printf("%c", cont);
 
-        fseek(stego, 0x36 + (3*i), SEEK_SET); // seek to get orig
-        fread(&origL, 1, 1, stego); //**WORKED
-        fseek(stego, 0x36 + (3*i) +3 , SEEK_SET); // seek to get orig
+        fseek(stego, 0x36 + (3*i), SEEK_SET); // SEEK TO LOWER
+        fread(&origL, 1, 1, stego);
+        fseek(stego, 0x36 + (3*i) +3 , SEEK_SET); // SEEK TO HIGHER
         fread(&origH, 1, 1, stego);
-        // printf("%x\t", orig);
 
         //GET LOW and HIGH HALF BYTE OF A CHARACTER
         low = cont & 0x0F;
@@ -53,9 +58,6 @@ void encrypt(FILE *stego, char* content){
         //PUT LOW and HIGH IN STEGANO
         char steL = (origL & 0xF0) | low;
         char steH = (origH & 0xF0) | high;
-        // printf("%c-%x\t%x\t%x\n",cont, cont, origL, origH);
-        // printf("%x\t%x\n", 0x36 + (3*i), steL);
-        // printf("%x\t%x\n", 0x36 + (3*i)+3, steH);
 
         fseek(stego, 0x36 + (3*i), SEEK_SET); //seek to put low in stego
         fwrite(&steL, 1, 1, stego);
@@ -63,35 +65,18 @@ void encrypt(FILE *stego, char* content){
         fwrite(&steH, 1, 1, stego);
     }
     fclose(stego);
-}
-
-int Encrypt(FILE* original, char* content){
-    if((original = fopen("./origin.bmp", "rb")) == NULL){
-        printf("Error opening \"origin.bmp\".\n");
-        return -1;
-    }
-    //IF FILE NOT EXIST, CREATE NEW FILE
-    FILE* stego = fopen("./stego.bmp", "wb");
-    copyBMP(original, stego);
-    fclose(stego);
-
-    // printf("Characters to be encrypted: %d", getStrLength(content));
-
-    encrypt(stego, content);
     return 1;
 }
-
-int Decrypt(FILE* stego){
+int Decode(FILE* stego){
     if((stego = fopen("./stego.bmp", "rb")) == NULL){
         printf("Error opening \"stego.bmp\". MAKE SURE THE FILE EXIST!\n");
-        exit(1);
+        return -1;
     }
     int content_len;
 
     //READ LENGTH OF CONTENT TO DECRYPT
     fseek(stego, 0x2D, SEEK_SET);
     fread(&content_len, sizeof(int), 1, stego);
-    printf("Characters to decrypt: %d\n", content_len);
 
     for(int i = 0; i < content_len*2; i+=2){
         
@@ -108,7 +93,7 @@ int Decrypt(FILE* stego){
         high = high | low;
         printf("%c", high);
     }
-
+    printf("\n\nDecoded %d characters\n", content_len);
     fclose(stego);
     return 1;
 }

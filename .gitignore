@@ -2,6 +2,7 @@
 *.out
 *.JPG
 *.txt
-*.pdf
+*.docx
+*.zip
 
-Steganography-In-C/
+report/

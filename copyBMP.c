@@ -6,7 +6,6 @@ typedef uint32_t DWORD;
 typedef int32_t  LONG;
 typedef uint16_t WORD;
 
-
 typedef struct
 {
     WORD h0;
@@ -26,7 +25,6 @@ typedef struct
     DWORD h14;
     DWORD h15;
 }BITMAPHEADER;
-
 typedef struct
 {
     BYTE red;
@@ -35,11 +33,6 @@ typedef struct
 }PIXEL;
 
 void copyBMP(FILE* original, FILE* stego){
-
-    // FILE *original, *stego;
-    // original = fopen("./origin.bmp", "rb");
-    // stego = fopen("./stego.bmp", "wb");
-    // printf("%lu", sizeof(BITMAPFILEHEADER));
 
     BITMAPHEADER bf;
     fread(&bf, sizeof(BITMAPHEADER), 1, original);
@@ -55,11 +48,9 @@ void copyBMP(FILE* original, FILE* stego){
         fwrite(&pixel, sizeof(PIXEL), 1, stego);
     }
 
-    // fclose(stego);
 
     /*TO COMPENSATE THE LAST BYTE*/
     char nul = 0x00;
-    // stego = fopen("./stego.bmp", "r+b");
     fseek(stego, 0x00, SEEK_END);
     fwrite(&nul, 1, 1, stego);
 }
