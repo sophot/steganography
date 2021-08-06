@@ -8,7 +8,6 @@ typedef uint16_t WORD;
 
 typedef struct
 {
-    WORD h0;
     DWORD h1;
     WORD h2;
     WORD h3;
@@ -24,6 +23,7 @@ typedef struct
     LONG h13;
     DWORD h14;
     DWORD h15;
+    WORD h0;
 }BITMAPHEADER;
 typedef struct
 {
